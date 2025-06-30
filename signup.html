@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="pages.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <img src="./pictures/linear-flat-woman-logo-template_23-2148853514-removebg-preview.png" alt="Skin Care Brand Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="signup.html">Signup</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="logout.html">Logout</a></li>
+            <li><a href="forget-password.html"></a></li>
+        </ul>
+    </nav>
+    <div class="outer-box">
+        <div class="inner-box">
+            <header class="page-header">
+                <h1>Signup</h1>
+                <p>It just takes 30 seconds</p>
+            </header>
+            <main class="page-body">
+                <form action="javascript:void(0);" method="POST" id="signup-form">
+                    <p>
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your Name" required>
+                    </p>
+                    <p>
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+                    </p>
+                    <p>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="At least 8 characters" required>
+                    </p>
+                    <p>
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your Password" required>
+                    </p>
+                    <p>
+                        <input type="submit" id="signup-btn" value="Create Account">
+                    </p>
+                </form>
+            </main>
+            <footer class="page-footer">
+                <p>Already have an account?<br><a href="login.html" class="login-link">Login</a></p>
+                <p><a href="forget-password.html" class="forget-password-link">Forget Password?</a></p> <!-- Link to Forget Password -->
+            </footer> 
+        </div>
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+    
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            console.log({ fullname, email, password }); // Log data for debugging
+    
+            try {
+                const response = await fetch('http://localhost:5001/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullname, email, password }),
+                });
+                const data = await response.json();
+                console.log(data); // Log response for debugging
+                if (response.ok) {
+                    window.location.href = "login.html"; // Redirect on success
+                } else {
+                    alert(data.message || 'Signup failed.');
+                }
+            } catch (err) {
+                alert('An error occurred during signup.');
+                console.error('Signup error:', err); // Log error for debugging
+            }
+        });
+    </script>
+        <section class="sub-footer">
+            <p>&copy; 2024 Skincare Brand. All Rights Reserved.</p>
+        </section>
+</body>
+</html>

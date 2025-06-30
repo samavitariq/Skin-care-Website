@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+   padding-top: 5rem;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.outer-box 
+{
+    position: relative;
+    width: 98.7vw;
+    height: 120vh;
+    background: linear-gradient(to right, rgb(123, 219, 123), rgb(28, 82, 28));
+}
+
+.inner-box {
+    width: 400px;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px 40px;
+    background: linear-gradient(to top left, #ffffff09, #ffffff33);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgb(112, 221, 112);
+    z-index: 2;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+}
+
+.page-header p {
+   font-size: 0.9rem;
+   color: whitesmoke;
+   text-align: center;
+}
+
+.page-body {
+    margin: 0px;
+}
+
+.page-body p {
+    color: white;
+    margin: 10px 0;
+}
+
+.page-body p label {
+   display: block;
+   font-weight: bold;
+}
+
+.page-body p input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #cccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 4px;
+}
+
+.page-body p input[type="button"],
+.page-body p input[type="submit"] {
+    background-color: rgb(31, 121, 31);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.page-body p input[type="button"]:hover,
+.page-body p input[type="submit"]:hover {
+    background-color: rgb(14, 184, 14);
+}
+
+.page-footer p {
+    color: whitesmoke;
+    text-align: left;
+}
+
+.page-footer p a,
+.page-body p a {
+   color: rgb(0, 48, 0);
+   text-decoration: none;
+}
+
+.page-footer p a:hover,
+.page-body p a:hover {
+   color: rgb(14, 184, 14);
+   text-decoration: underline;
+}
+
+.circle {
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    background: linear-gradient(to top right, #ffffff33, #ffffffff);
+    position: absolute;
+}
+
+.c1 {
+    top: 10px;
+    left: 100px;
+}
+
+.c2 {
+    bottom: 10px;
+    right: 100px;
+}

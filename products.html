@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to fetch products from the server
+        async function fetchProducts() {
+            try {
+                const response = await fetch('products.php');
+                const products = await response.json();
+                displayProductsByCategory(products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Function to display products by category
+        function displayProductsByCategory(products) {
+            const categories = ['Body Care', 'Face Care', 'Hair Care'];
+            const productsSection = document.querySelector('.products-section');
+
+            categories.forEach(category => {
+                // Create a section for each category
+                const categorySection = document.createElement('div');
+                categorySection.classList.add('category-section');
+                categorySection.innerHTML = `<h2>${category}</h2>`;
+
+                const productGrid = document.createElement('div');
+                productGrid.classList.add('product-grid');
+
+                // Filter products by category and display them
+                products.filter(product => product.category === category).forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.classList.add('product-item');
+                    productItem.innerHTML = `
+                        <img src="${product.image_url}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p>$${product.price}</p>
+                        <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                    `;
+                    productGrid.appendChild(productItem);
+                });
+
+                categorySection.appendChild(productGrid);
+                productsSection.appendChild(categorySection);
+            });
+        }
+
+        // Function to add a product to the cart
+        function addToCart(productName, productPrice) {
+            alert(`${productName} added to cart at $${productPrice}`);
+        }
+
+        // Fetch products when the page loads
+        document.addEventListener('DOMContentLoaded', fetchProducts);
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="./pictures/linear-flat-woman-logo-template_23-2148853514-removebg-preview.png" alt="Skin Care Brand Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="signup.html">Signup</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="logout.html">Logout</a></li>
+            <li><a href="forget-password.html"></a></li>
+        </ul>
+    </nav>
+    <section class="products-section" id="products">
+        <h1>Our Products</h1>
+        <!-- Product categories will be dynamically loaded here -->
+    </section>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="icons">
+                <ul>
+                    <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
+            <div class="product-categories">
+                <h2>Product Categories</h2>
+                <ul>
+                    <li><a href="#products">Face Care</a></li>
+                    <li><a href="#products">Body Care</a></li>
+                    <li><a href="#products">Hair Care</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="signup.html">Signup</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+        <section class="sub-footer">
+            <p>&copy; 2024 Skincare Brand. All Rights Reserved.</p>
+        </section>
+    
+</body>
+</html>
